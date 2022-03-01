@@ -34,8 +34,7 @@ public class GameUI {
         return input;
     }
 
-    public int getIntFromUser(int min, int max) throws IOException{
-        float value = getUserInputAsInt(min,max);
-        return (int) value;
+    public void displayIOError() {
+        System.out.println("We had an issue with IO operations. Let's start over.");
     }
 }
