@@ -7,6 +7,15 @@ import java.io.InputStreamReader;
 public class GameUI {
     private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+
+    public void displayMenu(){
+        System.out.println("Prepare for battle: Its BattleShip\r\n"+
+                "Are you ready:\r\n" +
+                "\t1. Player Vs. Player\r\n" +
+                "\t2. Player Vs. Bot\r\n" +
+                "\t3. Flee from the fight\r\n");
+    }
+
     public int getUserInputAsInt(int min, int max) throws IOException {
         int input;
         do{
@@ -23,5 +32,10 @@ public class GameUI {
             }
         }while (true);
         return input;
+    }
+
+    public int getIntFromUser(int min, int max) throws IOException{
+        float value = getUserInputAsInt(min,max);
+        return (int) value;
     }
 }
