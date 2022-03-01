@@ -1,4 +1,4 @@
 package edu.neumont.csc150.model;
 
-public class Ship {
+public class Submarine extends Ship{
 }
