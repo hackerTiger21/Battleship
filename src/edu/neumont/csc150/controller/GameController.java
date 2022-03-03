@@ -11,24 +11,11 @@ public class GameController {
     private GameUI ui = new GameUI();
     private Board board = new Board();
 
-    public void run() {
-        boolean keepRunning = true;
-        do{
-            try {
-                ui.displayMenu();
-                int selection = ui.getUserInputAsInt(1,3);
-                switch (selection){
-                    case 1: //human v human
-                        break;
-                    case 2: //human v bot
-                        break;
-                    case 3: //exit
-                        keepRunning = false;
-                        break;
-                }
-            } catch (IOException io){
-                ui.displayIOError();
-            }
-        }while (keepRunning);
+    public void run() throws IOException {
+        int options = 0;
+        while(options != -1){
+            ui.displayMenu();
+            options = ui.getIntFromUser(1,3);
+        }
     }
 }

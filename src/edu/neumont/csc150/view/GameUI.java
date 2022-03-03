@@ -12,9 +12,11 @@ public class GameUI {
         System.out.println("Prepare for battle: Its BattleShip\r\n"+
                 "Are you ready:\r\n" +
                 "\t1. Player Vs. Player\r\n" +
-                "\t2. Player Vs. Bot\r\n" +
-                "\t3. Flee from the fight\r\n");
+                "\t2. Player Vs. the Aliens(Bot)\r\n" +
+                "\t3. Wave your White FLag (that means exit)\r\n");
     }
+
+
 
     public int getUserInputAsInt(int min, int max) throws IOException {
         int input;
@@ -34,7 +36,8 @@ public class GameUI {
         return input;
     }
 
-    public void displayIOError() {
-        System.out.println("We had an issue with IO operations. Let's start over.");
+    public int getIntFromUser(int min, int max) throws IOException{
+        float value = getUserInputAsInt(min,max);
+        return (int) value;
     }
 }
