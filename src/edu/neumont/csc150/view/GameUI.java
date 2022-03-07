@@ -39,4 +39,25 @@ public class GameUI {
     public void displayIOError() {
         System.out.println("We ran into an error in IO operations. Let's start over.");
     }
+
+    public void displayBoard(int[][] board, boolean isOpponent) { //if isOpponent == true, display 3 the same way as 0
+        for (int row = 0; row < board.length; row++) {
+
+            System.out.print("|");
+            for (int column = 0; column < board[row].length; column++) {
+                System.out.print(" " + (board[row][column]) + " |");
+            }
+            System.out.println();
+            System.out.println("----------------------");
+        }
+    }
+
+    public String askName(boolean isPlayerOne) throws IOException {
+        System.out.print("What is the name of " + (isPlayerOne ? "Player 1":"Player 2") + "? ");
+        String input = br.readLine();
+        if (input == null || input.trim().isEmpty()){
+            throw new IllegalArgumentException("invalid name");
+        }
+        return input;
+    }
 }
