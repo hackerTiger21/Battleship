@@ -35,9 +35,4 @@ public class GameUI {
         }while (true);
         return input;
     }
-
-    public int getIntFromUser(int min, int max) throws IOException{
-        float value = getUserInputAsInt(min,max);
-        return (int) value;
-    }
 }
