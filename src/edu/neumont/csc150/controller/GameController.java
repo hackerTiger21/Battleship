@@ -3,13 +3,13 @@ package edu.neumont.csc150.controller;
 import edu.neumont.csc150.model.Board;
 import edu.neumont.csc150.view.GameUI;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 public class GameController {
     private GameUI ui = new GameUI();
-    private Board board = new Board();
+    private Board boardOne = new Board();
+    private Board boardTwo = new Board();
 
     public void run() {
         boolean keepRunning = true;

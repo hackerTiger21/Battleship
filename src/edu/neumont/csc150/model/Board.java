@@ -1,7 +1,7 @@
 package edu.neumont.csc150.model;
 
 public class Board {
-    private int[][] board = new int[10][10];
+    private int[][] board = new int[10][10]; //[row][column]
 
 
 
