@@ -16,7 +16,18 @@ public class GameUI {
                 "\t3. Wave your White FLag (that means exit)\r\n");
     }
 
+    public void askGameModeMenu(){
+        System.out.println("Which game mode will you choose:\r\n" +
+                "\t1. Basic game: (1 shot, next turn)\r\n" +
+                "\t2. Artillery: (Shoot until you miss)\r\n" +
+                "\t3. Salvo: (Your ships = your shots)");
+    }
 
+    public void attackMenu(){
+        System.out.println("It your turn, what shall you do?:\r\n" +
+                "\t1. Shoot your shot\r\n" +
+                "\t2. Wave your white flag\r\n" );
+    }
 
     public int getUserInputAsInt(int min, int max) throws IOException {
         int input;
@@ -42,7 +53,6 @@ public class GameUI {
 
     public void displayBoard(int[][] board, boolean isOpponent) { //if isOpponent == true, display 3 the same way as 0
         for (int row = 0; row < board.length; row++) {
-
             System.out.print("|");
             for (int column = 0; column < board[row].length; column++) {
                 System.out.print(" " + (board[row][column]) + " |");
