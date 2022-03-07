@@ -86,7 +86,7 @@ public class GameController {
         int columnNum = 0;
 
         String rowString = coordsString.substring(0,coordsString.length()-2);
-        rowNum = Integer.parseInt(rowString);
+        rowNum = Integer.parseInt(rowString) - 1;
 
         char columnChar = coordsString.charAt(coordsString.length() - 1); //always single character, last index
         if (columnChar >= 'a' && columnChar <= 'j') columnNum = columnChar - 'a';
