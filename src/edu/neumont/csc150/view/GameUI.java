@@ -35,4 +35,8 @@ public class GameUI {
         }while (true);
         return input;
     }
+
+    public void displayIOError() {
+        System.out.println("We ran into an error in IO operations. Let's start over.");
+    }
 }
