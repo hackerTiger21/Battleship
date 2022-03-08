@@ -25,14 +25,10 @@ public class GameController {
                 int selection = ui.getUserInputAsInt(1,3);
                 switch (selection){
                     case 1: //player vs player
-                        createPlayers(true, true);
-                        setGameMode();
-                        startGame();
+                        initializeGame(true,true);
                         break;
                     case 2: //player vs bot
-                        createPlayers(true, false);
-                        setGameMode();
-                        startGame();
+                        initializeGame(true, false);
                         break;
                     case 3: //end game
                         keepRunning = false;
@@ -42,6 +38,24 @@ public class GameController {
                 ui.displayIOError();
             }
         } while (keepRunning);
+    }
+
+    private void initializeGame(boolean playerOneHuman, boolean playerTwoHuman) throws IOException {
+        createPlayers(playerOneHuman, playerTwoHuman);
+        placeShips();
+        setGameMode();
+        startGame();
+    }
+
+    private void placeShips() {
+
+    }
+
+    private void clearBoards(){
+
+        for (int i = 0; i < boardOne.getBoard().length; i++) {
+
+        }
     }
 
     private void setGameMode() throws IOException {
@@ -64,12 +78,29 @@ public class GameController {
     }
 
     private void oneShotGame() {
+        boolean playerOneTurn = true;
+        boolean gameOver = false;
+        do{
+            if (playerOneTurn){
+
+            }
+        } while (!gameOver);
     }
 
     private void artilleryGame() {
+        boolean playerOneTurn = true;
+        boolean gameOver = false;
+        do{
+
+        } while (!gameOver);
     }
 
     private void salvoGame() {
+        boolean playerOneTurn = true;
+        boolean gameOver = false;
+        do{
+
+        } while (!gameOver);
     }
 
     private void createPlayers(boolean playerOneHuman, boolean playerTwoHuman) throws IOException {
