@@ -12,15 +12,15 @@ public class Board {
         this.board = board;
     }
 
-    public int takeShot(int row, int column) { //return 0 if target was chosen already, return 1 for hit, return 2 for miss
+    public ShotType takeShot(int row, int column) { //return 0 if target was chosen already, return 1 for hit, return 2 for miss
         int target = board[row][column];
         if (target == 3) {
             board[row][column] = 2; //you hit a ship
-            return 1;
+            return ShotType.Hit;
         }else if (target == 0) { //you hit empty water
             board[row][column] = 1;
-            return 2;
+            return ShotType.Miss;
         }
-        return 0;
+        return ShotType.Invalid;
     }
 }

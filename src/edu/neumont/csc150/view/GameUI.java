@@ -70,4 +70,8 @@ public class GameUI {
         }
         return input;
     }
+
+    public void displayUnderConstruction() {
+        System.out.println("The bot is currently under construction.");
+    }
 }

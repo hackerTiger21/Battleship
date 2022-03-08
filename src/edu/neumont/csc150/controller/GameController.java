@@ -28,7 +28,8 @@ public class GameController {
                         initializeGame(true,true);
                         break;
                     case 2: //player vs bot
-                        initializeGame(true, false);
+                        ui.displayUnderConstruction();
+                        //initializeGame(true, false);
                         break;
                     case 3: //end game
                         keepRunning = false;
@@ -48,14 +49,24 @@ public class GameController {
     }
 
     private void placeShips() {
+        initializeBoards();
+        int[][] workingBoard;
 
-    }
-
-    private void clearBoards(){
-
-        for (int i = 0; i < boardOne.getBoard().length; i++) {
+        workingBoard = boardOne.getBoard();
+        for (int i = 0; i < 5; i++) {
 
         }
+    }
+
+    private void initializeBoards(){ //sets both boards to empty water
+        int[][] clearBoard = new int[10][10];
+        for (int i = 0; i < boardOne.getBoard().length; i++) {
+            for (int j = 0; j < boardOne.getBoard()[0].length; j++) {
+                clearBoard[i][j] = 0;
+            }
+        }
+        boardOne.setBoard(clearBoard);
+        boardTwo.setBoard(clearBoard);
     }
 
     private void setGameMode() throws IOException {
