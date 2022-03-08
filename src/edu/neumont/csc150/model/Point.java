@@ -3,10 +3,12 @@ package edu.neumont.csc150.model;
 public class Point {
     private int x;
     private int y;
+    private boolean isHit;
 
     public Point(int x, int y){
         setX(x);
         setY(y);
+        setHit(false);
     }
 
     public int getX() {
@@ -23,5 +25,13 @@ public class Point {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public boolean isHit() {
+        return isHit;
+    }
+
+    public void setHit(boolean hit) {
+        isHit = hit;
     }
 }

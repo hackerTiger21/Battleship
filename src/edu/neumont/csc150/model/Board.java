@@ -12,7 +12,7 @@ public class Board {
         this.board = board;
     }
 
-    public ShotType takeShot(int row, int column) { //return 0 if target was chosen already, return 1 for hit, return 2 for miss
+    public ShotType takeShot(int row, int column) {
         int target = board[row][column];
         if (target == 3) {
             board[row][column] = 2; //you hit a ship
@@ -21,6 +21,6 @@ public class Board {
             board[row][column] = 1;
             return ShotType.Miss;
         }
-        return ShotType.Invalid;
+        return ShotType.Invalid; //already hit
     }
 }
