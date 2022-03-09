@@ -2,6 +2,7 @@ package edu.neumont.csc150.controller;
 
 import edu.neumont.csc150.model.Board;
 import edu.neumont.csc150.model.Point;
+import edu.neumont.csc150.model.ShipType;
 import edu.neumont.csc150.model.player.BotPlayer;
 import edu.neumont.csc150.model.player.HumanPlayer;
 import edu.neumont.csc150.model.player.Player;
@@ -52,6 +53,8 @@ public class GameController {
     private void placeShips() {
         initializeBoards();
         int[][] workingBoard;
+        ShipType[] types = ShipType.values();
+
 
         workingBoard = boardOne.getBoard();
         for (int i = 0; i < 5; i++) {

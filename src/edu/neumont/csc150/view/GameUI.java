@@ -81,4 +81,9 @@ public class GameUI {
     public void displayUnderConstruction() {
         System.out.println("The bot is currently under construction.");
     }
+
+    public void clearConsole(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }
