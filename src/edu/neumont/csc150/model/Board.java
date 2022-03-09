@@ -12,7 +12,9 @@ public class Board {
         this.board = board;
     }
 
-    public ShotType takeShot(int row, int column) {
+    public ShotType takeShot(Point targetPoint) {
+        int row = targetPoint.getRow();
+        int column = targetPoint.getColumn();
         int target = board[row][column];
         if (target == 3) {
             board[row][column] = 2; //you hit a ship

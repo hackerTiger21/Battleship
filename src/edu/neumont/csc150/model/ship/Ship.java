@@ -21,4 +21,12 @@ public abstract class Ship {
     public void setPoints(Point[] points) {
         this.points = points;
     }
+
+    public boolean isSunk(){
+        boolean allHit = true;
+        for (int i = 0; i < points.length; i++) {
+            if (!points[i].isHit()) allHit = false;
+        }
+        return allHit;
+    }
 }

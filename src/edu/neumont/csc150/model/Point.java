@@ -1,30 +1,30 @@
 package edu.neumont.csc150.model;
 
 public class Point {
-    private int x;
-    private int y;
+    private int row;
+    private int column;
     private boolean isHit;
 
-    public Point(int x, int y){
-        setX(x);
-        setY(y);
+    public Point(int row, int column){
+        setRow(row);
+        setColumn(column);
         setHit(false);
     }
 
-    public int getX() {
-        return x;
+    public int getRow() {
+        return row;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setRow(int row) {
+        this.row = row;
     }
 
-    public int getY() {
-        return y;
+    public int getColumn() {
+        return column;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setColumn(int column) {
+        this.column = column;
     }
 
     public boolean isHit() {

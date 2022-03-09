@@ -1,5 +1,5 @@
 package edu.neumont.csc150.model;
 
-public enum ShipTypes {
+public enum ShipType {
     Carrier, Battleship, Cruiser, Submarine, Destroyer
 }

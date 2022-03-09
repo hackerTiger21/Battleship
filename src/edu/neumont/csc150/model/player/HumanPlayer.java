@@ -4,5 +4,6 @@ public class HumanPlayer extends Player{
     public HumanPlayer(String name){
         setName(name);
         setHuman(true);
+        setShipsLeft(5);
     }
 }

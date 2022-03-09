@@ -1,5 +1,7 @@
 package edu.neumont.csc150.view;
 
+import edu.neumont.csc150.model.ShipType;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,11 +14,10 @@ public class GameUI {
                 "Are you ready:\r\n" +
                 "\t1. Player Vs. Player\r\n" +
                 "\t2. Player Vs. the Aliens(Bot)\r\n" +
-                "\t3. Wave your White FLag (that means exit)\r\n");
+                "\t3. Wave your White FLag (that means exit)");
     }
 
     public void askGameModeMenu() {
-
         System.out.println("Which game mode will you choose:\r\n" +
                 "\t1. Basic game: (1 shot, next turn)\r\n" +
                 "\t2. Artillery: (Shoot until you miss)\r\n" +
@@ -24,14 +25,13 @@ public class GameUI {
     }
 
     public void attackMenu() {
-
         System.out.println("It your turn, what shall you do?:\r\n" +
                 "\t1. Shoot your shot\r\n" +
-                "\t2. Wave your white flag\r\n");
+                "\t2. Wave your white flag");
     }
 
-    public void boatMenu(){
-        System.out.println("Where are you stationing your Ships?\r\n");
+    public void askShipCoords(ShipType type){
+        System.out.print("Where are you stationing your " + type.name() + "?\r\n");
     }
 
     public int getUserInputAsInt(int min, int max) throws IOException {

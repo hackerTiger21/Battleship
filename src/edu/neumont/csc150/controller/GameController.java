@@ -1,6 +1,7 @@
 package edu.neumont.csc150.controller;
 
 import edu.neumont.csc150.model.Board;
+import edu.neumont.csc150.model.Point;
 import edu.neumont.csc150.model.player.BotPlayer;
 import edu.neumont.csc150.model.player.HumanPlayer;
 import edu.neumont.csc150.model.player.Player;
@@ -123,7 +124,7 @@ public class GameController {
         ui.displayBoard(playerOne ? boardOne.getBoard():boardTwo.getBoard(), isOpponent);
     }
 
-    private int[] parseCoords(String coordsString){
+    private Point parseCoords(String coordsString){
         int rowNum = 0;
         int columnNum = 0;
 
@@ -134,7 +135,6 @@ public class GameController {
         if (columnChar >= 'a' && columnChar <= 'j') columnNum = columnChar - 'a';
         else if (columnChar >= 'A' && columnChar <= 'J') columnNum = columnChar - 'A';
 
-        int[] coords = {rowNum, columnNum};
-        return coords;
+        return new Point(rowNum,columnNum);
     }
 }

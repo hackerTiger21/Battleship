@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        new GameController().run();
+        new GameController().run();  //here we go
     }
 }
