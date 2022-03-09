@@ -9,14 +9,20 @@ import java.io.InputStreamReader;
 public class GameUI {
     private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+    /**
+     *Starting the game
+     */
     public void displayMenu() {
         System.out.println("Prepare for battle: Its BattleShip\r\n" +
                 "Are you ready:\r\n" +
-                "\t1. Player Vs. Player\r\n" +
-                "\t2. Player Vs. the Aliens(Bot)\r\n" +
+                "\t1. Capitan Vs. Capitan\r\n" +
+                "\t2. Capitan Vs. the Aliens(Bot)(Under Development) \r\n" +
                 "\t3. Wave your White FLag (that means exit)");
     }
 
+    /**
+     * Choosing a game mode
+     */
     public void askGameModeMenu() {
         System.out.println("Which game mode will you choose:\r\n" +
                 "\t1. Basic game: (1 shot, next turn)\r\n" +
@@ -24,14 +30,20 @@ public class GameUI {
                 "\t3. Salvo: (Your ships = your shots)");
     }
 
+    /**
+     * placing your ships
+     */
+    public void askShipCoords(ShipType type) {
+        System.out.print("Where are you stationing your " + type.name() + "?\r\n");
+    }
+
+    /**
+     * The game begins, Starting players turn
+     */
     public void attackMenu() {
         System.out.println("It your turn, what shall you do?:\r\n" +
                 "\t1. Shoot your shot\r\n" +
                 "\t2. Wave your white flag");
-    }
-
-    public void askShipCoords(ShipType type){
-        System.out.print("Where are you stationing your " + type.name() + "?\r\n");
     }
 
     public int getUserInputAsInt(int min, int max) throws IOException {
@@ -51,7 +63,6 @@ public class GameUI {
         } while (true);
         return input;
     }
-
 
 
     public void displayIOError() {
@@ -79,10 +90,11 @@ public class GameUI {
     }
 
     public void displayUnderConstruction() {
-        System.out.println("The bot is currently under construction.");
+        System.out.println("The bot is currently under construction.\r\n" +
+                "(AKA: thee Aliens hacked us & told us to get gud, so we're trying to get it back up and running.)");
     }
 
-    public void clearConsole(){
+    public void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
