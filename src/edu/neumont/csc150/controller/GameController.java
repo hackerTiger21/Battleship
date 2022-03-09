@@ -6,10 +6,10 @@ import edu.neumont.csc150.model.ShipType;
 import edu.neumont.csc150.model.player.BotPlayer;
 import edu.neumont.csc150.model.player.HumanPlayer;
 import edu.neumont.csc150.model.player.Player;
+import edu.neumont.csc150.model.ship.*;
 import edu.neumont.csc150.view.GameUI;
 
 import java.io.IOException;
-
 
 public class GameController {
     private GameUI ui = new GameUI();
@@ -50,15 +50,63 @@ public class GameController {
         startGame();
     }
 
-    private void placeShips() {
+    private void placeShips() throws IOException {
         initializeBoards();
         int[][] workingBoard;
-        ShipType[] types = ShipType.values();
 
+        ShipType[] types = ShipType.values();
+        String[] typeStrings = new String[types.length];
+        for (int i = 0; i < types.length; i++) {
+            typeStrings[i] = types[i].name();
+        }
 
         workingBoard = boardOne.getBoard();
         for (int i = 0; i < 5; i++) {
+            Point startingPoint;
+            Point[] points;
+            String workingType = typeStrings[i];
+            switch (workingType){
+                case "Carrier":
+                    points = new Point[Carrier.getLength()];
+                    if (ui.askIfShipVertical(workingType)){
 
+                    } else {
+
+                    }
+                    break;
+                case "Battleship":
+                    points = new Point[Battleship.getLength()];
+                    if (ui.askIfShipVertical(workingType)){
+
+                    } else {
+
+                    }
+                    break;
+                case "Cruiser":
+                    points = new Point[Cruiser.getLength()];
+                    if (ui.askIfShipVertical(workingType)){
+
+                    } else {
+
+                    }
+                    break;
+                case "Submarine":
+                    points = new Point[Submarine.getLength()];
+                    if (ui.askIfShipVertical(workingType)){
+
+                    } else {
+
+                    }
+                    break;
+                case "Destroyer":
+                    points = new Point[Destroyer.getLength()];
+                    if (ui.askIfShipVertical(workingType)){
+
+                    } else {
+
+                    }
+                    break;
+            }
         }
     }
 
@@ -125,19 +173,5 @@ public class GameController {
 
     private void displayBoard(boolean playerOne, boolean isOpponent){
         ui.displayBoard(playerOne ? boardOne.getBoard():boardTwo.getBoard(), isOpponent);
-    }
-
-    private Point parseCoords(String coordsString){
-        int rowNum = 0;
-        int columnNum = 0;
-
-        String rowString = coordsString.substring(0,coordsString.length()-2);
-        rowNum = Integer.parseInt(rowString) - 1;
-
-        char columnChar = coordsString.charAt(coordsString.length() - 1); //always single character, last index
-        if (columnChar >= 'a' && columnChar <= 'j') columnNum = columnChar - 'a';
-        else if (columnChar >= 'A' && columnChar <= 'J') columnNum = columnChar - 'A';
-
-        return new Point(rowNum,columnNum);
     }
 }
