@@ -61,133 +61,136 @@ public class GameController {
             typeStrings[i] = types[i].name();
         }
 
-        workingBoardArray = boardOne.getBoard();
-        for (int i = 0; i < 5; i++) {
-            Point startingPoint;
-            Point[] points;
-            String workingType = typeStrings[i];
-            switch (workingType){
-                case "Carrier":
-                    points = new Point[Carrier.getLength()];
-                    if (ui.askIfShipVertical(workingType)){
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], true);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Carrier.getLength(),true);
-                            points[0] = startingPoint;
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
-                            }
-                        } while (!validPlacement);
-                    } else {
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], false);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Carrier.getLength(),false);
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
-                            }
-                        } while (!validPlacement);
-                    }
-                    new Carrier(points);
-                    break;
+        for (int h = 0; h < 2; h++) {
+            workingBoardArray = h == 0 ? boardOne.getBoard():boardTwo.getBoard();
+            for (int i = 0; i < 5; i++) {
+                Point startingPoint;
+                Point[] points;
+                String workingType = typeStrings[i];
+                switch (workingType){
+                    case "Carrier":
+                        points = new Point[Carrier.getLength()];
+                        if (ui.askIfShipVertical(workingType)){
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], true);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Carrier.getLength(),true);
+                                points[0] = startingPoint;
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                }
+                            } while (!validPlacement);
+                        } else {
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], false);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Carrier.getLength(),false);
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                }
+                            } while (!validPlacement);
+                        }
+                        new Carrier(points);
+                        break;
 
-                case "Battleship":
-                    points = new Point[Battleship.getLength()];
-                    if (ui.askIfShipVertical(workingType)){
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], true);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Battleship.getLength(),true);
-                            points[0] = startingPoint;
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
-                            }
-                        } while (!validPlacement);
-                    } else {
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], false);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Battleship.getLength(),false);
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
-                            }
-                        } while (!validPlacement);
-                    }
-                    new Battleship(points);
-                    break;
-                case "Cruiser":
-                    points = new Point[Cruiser.getLength()];
-                    if (ui.askIfShipVertical(workingType)){
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], true);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Cruiser.getLength(),true);
-                            points[0] = startingPoint;
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
-                            }
-                        } while (!validPlacement);
-                    } else {
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], false);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Cruiser.getLength(),false);
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
-                            }
-                        } while (!validPlacement);
-                    }
-                    new Cruiser(points);
-                    break;
-                case "Submarine":
-                    points = new Point[Submarine.getLength()];
-                    if (ui.askIfShipVertical(workingType)){
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], true);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Submarine.getLength(),true);
-                            points[0] = startingPoint;
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
-                            }
-                        } while (!validPlacement);
-                    } else {
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], false);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Submarine.getLength(),false);
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
-                            }
-                        } while (!validPlacement);
-                    }
-                    new Submarine(points);
-                case "Destroyer":
-                    points = new Point[Destroyer.getLength()];
-                    if (ui.askIfShipVertical(workingType)){
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], true);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Destroyer.getLength(),true);
-                            points[0] = startingPoint;
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
-                            }
-                        } while (!validPlacement);
-                    } else {
-                        validPlacement = false;
-                        do {
-                            startingPoint = ui.askShipCoords(typeStrings[i], false);
-                            validPlacement = placementValid(startingPoint,workingBoardArray,Destroyer.getLength(),false);
-                            for (int j = 1; j < points.length; j++) {
-                                points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
-                            }
-                        } while (!validPlacement);
-                    }
-                    new Destroyer(points);
-                    break;
-            }
+                    case "Battleship":
+                        points = new Point[Battleship.getLength()];
+                        if (ui.askIfShipVertical(workingType)){
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], true);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Battleship.getLength(),true);
+                                points[0] = startingPoint;
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                }
+                            } while (!validPlacement);
+                        } else {
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], false);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Battleship.getLength(),false);
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                }
+                            } while (!validPlacement);
+                        }
+                        new Battleship(points);
+                        break;
+                    case "Cruiser":
+                        points = new Point[Cruiser.getLength()];
+                        if (ui.askIfShipVertical(workingType)){
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], true);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Cruiser.getLength(),true);
+                                points[0] = startingPoint;
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                }
+                            } while (!validPlacement);
+                        } else {
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], false);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Cruiser.getLength(),false);
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                }
+                            } while (!validPlacement);
+                        }
+                        new Cruiser(points);
+                        break;
+                    case "Submarine":
+                        points = new Point[Submarine.getLength()];
+                        if (ui.askIfShipVertical(workingType)){
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], true);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Submarine.getLength(),true);
+                                points[0] = startingPoint;
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                }
+                            } while (!validPlacement);
+                        } else {
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], false);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Submarine.getLength(),false);
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                }
+                            } while (!validPlacement);
+                        }
+                        new Submarine(points);
+                    case "Destroyer":
+                        points = new Point[Destroyer.getLength()];
+                        if (ui.askIfShipVertical(workingType)){
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], true);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Destroyer.getLength(),true);
+                                points[0] = startingPoint;
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                }
+                            } while (!validPlacement);
+                        } else {
+                            validPlacement = false;
+                            do {
+                                startingPoint = ui.askShipCoords(typeStrings[i], false);
+                                validPlacement = placementValid(startingPoint,workingBoardArray,Destroyer.getLength(),false);
+                                for (int j = 1; j < points.length; j++) {
+                                    points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                }
+                            } while (!validPlacement);
+                        }
+                        new Destroyer(points);
+                        break;
+                }
+        }
+
         }
     }
 
