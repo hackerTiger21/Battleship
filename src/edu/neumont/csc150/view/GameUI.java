@@ -60,7 +60,9 @@ public class GameUI {
         boolean invalidCoords = true;
         do {
             try {
-                rowNum = Integer.parseInt(coordsString.substring(0, coordsString.length() - 2));
+                if (coordsString.length() == 2) rowNum = Integer.parseInt((String.valueOf(coordsString.charAt(0))));
+                else if (coordsString.length() == 3) rowNum = Integer.parseInt(coordsString.substring(0, coordsString.length()));
+                else throw new NumberFormatException();
                 if (rowNum > 10 || rowNum < 1) throw new NumberFormatException();
 
                 columnChar = coordsString.charAt(coordsString.length() - 1); //always single character, last index
@@ -118,7 +120,7 @@ public class GameUI {
                 System.out.print(" " + (board[row][column]) + " |");
             }
             System.out.println();
-            System.out.println("----------------------");
+            System.out.println("-----------------------------------------");
         }
     }
 
