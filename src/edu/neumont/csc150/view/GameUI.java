@@ -56,6 +56,7 @@ public class GameUI {
         int rowNum = 0;
         char columnChar;
         int columnNum = 0;
+        System.out.println("\u001B[30m");
 
         boolean invalidCoords = true;
         do {
@@ -115,9 +116,16 @@ public class GameUI {
 
     public void displayBoard(int[][] board, boolean isOpponent) { //if isOpponent == true, display 3 the same way as 0
         for (int row = 0; row < board.length; row++) {
-            System.out.print("|");
+            System.out.print("\u001B[44m"+ "|"+  "\u001B[44m");
             for (int column = 0; column < board[row].length; column++) {
-                System.out.print(" " + (board[row][column]) + " |");
+                //if checking if occupied
+                /*if(board[row][column].){
+
+                }*/
+                    //store correct colour
+                //else
+                    //store default colour
+                System.out.print("\u001B[44m" + " " +  "/*use variable*/\u001B[37m" + (board[row][column]) +  "\u001B[0m" +  "\u001B[44m" +  " |" +  "\u001B[0m");
             }
             System.out.println();
             System.out.println("-----------------------------------------");
