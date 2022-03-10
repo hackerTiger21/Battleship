@@ -25,28 +25,25 @@ public class GameUI {
      * Choosing a game mode
      */
     public void askGameModeMenu() {
-        System.out.println("Which game mode will you choose:\r\n" +
+        System.out.println("Which game mode do you want?\r\n" +
                 "\t1. Basic game: (1 shot, next turn)\r\n" +
                 "\t2. Artillery: (Shoot until you miss)\r\n" +
                 "\t3. Salvo: (Your ships = your shots)");
     }
 
-    /**
-     * placing your ships
-     */
-    public void askShipCoords(ShipType type) {
-        System.out.print("Where are you stationing your " + type.name() + "?\r\n");
-    }
 
     /**
      * The game begins, Starting players turn
      */
     public void attackMenu() {
-        System.out.println("It your turn, what shall you do?:\r\n" +
+        System.out.println("It's your turn, what do you do?:\r\n" +
                 "\t1. Shoot your shot\r\n" +
                 "\t2. Wave your white flag");
     }
 
+    /**
+     * placing your ships
+     */
     public Point askShipCoords(String type, boolean isVertical) throws IOException {
         System.out.print("Where do you want to put the " + (isVertical ? "topmost":"leftmost") + " segment of your " + type + "? ");
         return parseCoords();
@@ -136,7 +133,7 @@ public class GameUI {
 
     public void displayUnderConstruction() {
         System.out.println("The bot is currently under construction.\r\n" +
-                "(AKA: thee Aliens hacked us & told us to get gud, so we're trying to get it back up and running.)");
+                "(AKA: the Aliens hacked us & told us to get gud, so we're trying to get it back up and running.)");
     }
 
     public void clearConsole() {
