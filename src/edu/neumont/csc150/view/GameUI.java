@@ -56,7 +56,6 @@ public class GameUI {
         int rowNum = 0;
         char columnChar;
         int columnNum = 0;
-        System.out.println("\u001B[30m");
 
         boolean invalidCoords = true;
         do {
@@ -115,20 +114,32 @@ public class GameUI {
     }
 
     public void displayBoard(int[][] board, boolean isOpponent) { //if isOpponent == true, display 3 the same way as 0
-        for (int row = 0; row < board.length; row++) {
-            System.out.print("\u001B[44m"+ "|"+  "\u001B[44m");
-            for (int column = 0; column < board[row].length; column++) {
-                //if checking if occupied
-                /*if(board[row][column].){
 
-                }*/
-                    //store correct colour
-                //else
-                    //store default colour
-                System.out.print("\u001B[44m" + " " +  "/*use variable*/\u001B[37m" + (board[row][column]) +  "\u001B[0m" +  "\u001B[44m" +  " |" +  "\u001B[0m");
+        System.out.println("----a---b---c---d---e---f---g---h---i---j--");
+        for (int row = 0; row < board.length; row++) {
+            System.out.print((row+1) + (row == 9 ? "|":" |"));
+            for (int column = 0; column < board[row].length; column++) {
+                int cell = board[row][column];
+                switch (cell){
+                    case 0: // empty water
+                        System.out.print(colors.BLUE + colors.BLUE_BACKGROUND + " " + cell + " ");
+                        break;
+                    case 1: // miss
+                        System.out.print(colors.WHITE + colors.WHITE_BACKGROUND + " " + cell + " ");
+                        break;
+                    case 2: // hit
+                        System.out.print(colors.RED + colors.RED_BACKGROUND + " " + cell + " ");
+                        break;
+                    case 3: // ship
+                        if (isOpponent) System.out.print(colors.BLUE + colors.BLUE_BACKGROUND + " " + cell + " ");
+                        else System.out.print(colors.BLACK + colors.BLACK_BACKGROUND + " " + cell + " ");
+                        break;
+                }
+                System.out.print(colors.RESET);
+                System.out.print("|");
             }
             System.out.println();
-            System.out.println("-----------------------------------------");
+            System.out.println("-------------------------------------------");
         }
     }
 
