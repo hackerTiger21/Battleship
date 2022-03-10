@@ -114,7 +114,6 @@ public class GameUI {
     }
 
     public void displayBoard(int[][] board, boolean isOpponent) { //if isOpponent == true, display 3 the same way as 0
-
         System.out.println("----a---b---c---d---e---f---g---h---i---j--");
         for (int row = 0; row < board.length; row++) {
             System.out.print((row+1) + (row == 9 ? "|":" |"));

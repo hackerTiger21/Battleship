@@ -62,8 +62,10 @@ public class GameController {
         }
 
         for (int h = 0; h < 2; h++) {
-            workingBoardArray = h == 0 ? boardOne.getBoard() : boardTwo.getBoard();
+            boolean playerOne = h == 0;
+            workingBoardArray = (h == 0 ? boardOne.getBoard() : boardTwo.getBoard());
             for (int i = 0; i < 5; i++) {
+                displayBoard(playerOne, false);
                 Point startingPoint;
                 String workingType = typeStrings[i];
                 switch (workingType) {
@@ -198,7 +200,6 @@ public class GameController {
                         destroyer.setPoints(destroyerPoints);
                         break;
                 }
-                ui.displayBoard(workingBoardArray, false);
             }
             ui.switchPlayers();
         }
