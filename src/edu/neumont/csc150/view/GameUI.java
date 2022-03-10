@@ -143,4 +143,8 @@ public class GameUI {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    public void displayInvalidPlacement() {
+        System.out.println("That placement is invalid. Try again.");
+    }
 }
