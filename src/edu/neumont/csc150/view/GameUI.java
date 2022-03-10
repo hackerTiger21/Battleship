@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 
 public class GameUI {
     private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+    private ConsoleColors colors = new ConsoleColors();
     /**
      *Starting the game
      */
