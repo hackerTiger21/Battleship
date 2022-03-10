@@ -147,4 +147,11 @@ public class GameUI {
     public void displayInvalidPlacement() {
         System.out.println("That placement is invalid. Try again.");
     }
+
+    public void switchPlayers() throws IOException {
+        clearConsole();
+        System.out.println("Pass the device to the other player, press Enter when ready.");
+        br.readLine();
+        clearConsole();
+    }
 }

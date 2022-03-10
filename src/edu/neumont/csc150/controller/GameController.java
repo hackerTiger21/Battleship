@@ -21,13 +21,13 @@ public class GameController {
 
     public void run() {
         boolean keepRunning = true;
-        do{
-            try{
+        do {
+            try {
                 ui.displayMenu();
-                int selection = ui.getUserInputAsInt(1,3);
-                switch (selection){
+                int selection = ui.getUserInputAsInt(1, 3);
+                switch (selection) {
                     case 1: //player vs player
-                        initializeGame(true,true);
+                        initializeGame(true, true);
                         break;
                     case 2: //player vs bot
                         ui.displayUnderConstruction();
@@ -37,7 +37,7 @@ public class GameController {
                         keepRunning = false;
                         break;
                 }
-            } catch (IOException io){
+            } catch (IOException io) {
                 ui.displayIOError();
             }
         } while (keepRunning);
@@ -62,19 +62,19 @@ public class GameController {
         }
 
         for (int h = 0; h < 2; h++) {
-            workingBoardArray = h == 0 ? boardOne.getBoard():boardTwo.getBoard();
+            workingBoardArray = h == 0 ? boardOne.getBoard() : boardTwo.getBoard();
             for (int i = 0; i < 5; i++) {
                 Point startingPoint;
                 Point[] points;
                 String workingType = typeStrings[i];
-                switch (workingType){
+                switch (workingType) {
                     case "Carrier":
                         points = new Point[Carrier.getLength()];
-                        if (ui.askIfShipVertical(workingType)){
+                        if (ui.askIfShipVertical(workingType)) {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], true);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Carrier.getLength(),true);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Carrier.getLength(), true);
                                 points[0] = startingPoint;
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
@@ -84,7 +84,7 @@ public class GameController {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], false);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Carrier.getLength(),false);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Carrier.getLength(), false);
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
@@ -95,11 +95,11 @@ public class GameController {
 
                     case "Battleship":
                         points = new Point[Battleship.getLength()];
-                        if (ui.askIfShipVertical(workingType)){
+                        if (ui.askIfShipVertical(workingType)) {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], true);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Battleship.getLength(),true);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Battleship.getLength(), true);
                                 points[0] = startingPoint;
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
@@ -109,7 +109,7 @@ public class GameController {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], false);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Battleship.getLength(),false);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Battleship.getLength(), false);
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
@@ -119,11 +119,11 @@ public class GameController {
                         break;
                     case "Cruiser":
                         points = new Point[Cruiser.getLength()];
-                        if (ui.askIfShipVertical(workingType)){
+                        if (ui.askIfShipVertical(workingType)) {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], true);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Cruiser.getLength(),true);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Cruiser.getLength(), true);
                                 points[0] = startingPoint;
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
@@ -133,7 +133,7 @@ public class GameController {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], false);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Cruiser.getLength(),false);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Cruiser.getLength(), false);
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
@@ -143,11 +143,11 @@ public class GameController {
                         break;
                     case "Submarine":
                         points = new Point[Submarine.getLength()];
-                        if (ui.askIfShipVertical(workingType)){
+                        if (ui.askIfShipVertical(workingType)) {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], true);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Submarine.getLength(),true);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Submarine.getLength(), true);
                                 points[0] = startingPoint;
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
@@ -157,7 +157,7 @@ public class GameController {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], false);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Submarine.getLength(),false);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Submarine.getLength(), false);
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
@@ -166,11 +166,11 @@ public class GameController {
                         new Submarine(points);
                     case "Destroyer":
                         points = new Point[Destroyer.getLength()];
-                        if (ui.askIfShipVertical(workingType)){
+                        if (ui.askIfShipVertical(workingType)) {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], true);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Destroyer.getLength(),true);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Destroyer.getLength(), true);
                                 points[0] = startingPoint;
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
@@ -180,7 +180,7 @@ public class GameController {
                             validPlacement = false;
                             do {
                                 startingPoint = ui.askShipCoords(typeStrings[i], false);
-                                validPlacement = placementValid(startingPoint,workingBoardArray,Destroyer.getLength(),false);
+                                validPlacement = placementValid(startingPoint, workingBoardArray, Destroyer.getLength(), false);
                                 for (int j = 1; j < points.length; j++) {
                                     points[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
@@ -189,12 +189,12 @@ public class GameController {
                         new Destroyer(points);
                         break;
                 }
-        }
-
+            }
+            ui.switchPlayers();
         }
     }
 
-    private void initializeBoards(){ //sets both boards to empty water
+    private void initializeBoards() { //sets both boards to empty water
         int[][] clearBoard = new int[10][10];
         for (int i = 0; i < boardOne.getBoard().length; i++) {
             for (int j = 0; j < boardOne.getBoard()[0].length; j++) {
@@ -207,11 +207,11 @@ public class GameController {
 
     private void setGameMode() throws IOException {
         ui.askGameModeMenu();
-        gameMode = ui.getUserInputAsInt(1,3);
+        gameMode = ui.getUserInputAsInt(1, 3);
     }
 
     private void startGame() {
-        switch (gameMode){
+        switch (gameMode) {
             case 1: //one shot
                 oneShotGame();
                 break;
@@ -227,8 +227,8 @@ public class GameController {
     private void oneShotGame() {
         boolean playerOneTurn = true;
         boolean gameOver = false;
-        do{
-            if (playerOneTurn){
+        do {
+            if (playerOneTurn) {
 
             }
         } while (!gameOver);
@@ -237,7 +237,7 @@ public class GameController {
     private void artilleryGame() {
         boolean playerOneTurn = true;
         boolean gameOver = false;
-        do{
+        do {
 
         } while (!gameOver);
     }
@@ -245,7 +245,7 @@ public class GameController {
     private void salvoGame() {
         boolean playerOneTurn = true;
         boolean gameOver = false;
-        do{
+        do {
 
         } while (!gameOver);
     }
@@ -255,13 +255,13 @@ public class GameController {
         playerTwo = playerTwoHuman ? new HumanPlayer(ui.askName(false)) : new BotPlayer(ui.askName(false));
     }
 
-    private void displayBoard(boolean playerOne, boolean isOpponent){
-        ui.displayBoard(playerOne ? boardOne.getBoard():boardTwo.getBoard(), isOpponent);
+    private void displayBoard(boolean playerOne, boolean isOpponent) {
+        ui.displayBoard(playerOne ? boardOne.getBoard() : boardTwo.getBoard(), isOpponent);
     }
 
-    private boolean placementValid(Point startingPoint, int[][] workingBoard, int length, boolean vertical){
+    private boolean placementValid(Point startingPoint, int[][] workingBoard, int length, boolean vertical) {
         boolean noCollision = true;
-        if (vertical){
+        if (vertical) {
             try {
                 for (int i = 1; i < length; i++) {
                     if (workingBoard[startingPoint.getRow() + i][startingPoint.getColumn()] == 3) {
@@ -269,7 +269,7 @@ public class GameController {
                         noCollision = false;
                     }
                 }
-            } catch (ArrayIndexOutOfBoundsException ex){
+            } catch (ArrayIndexOutOfBoundsException ex) {
                 ui.displayInvalidPlacement();
                 noCollision = false;
             }
@@ -281,7 +281,7 @@ public class GameController {
                         noCollision = false;
                     }
                 }
-            } catch (ArrayIndexOutOfBoundsException ex){
+            } catch (ArrayIndexOutOfBoundsException ex) {
                 ui.displayInvalidPlacement();
                 noCollision = false;
             }
