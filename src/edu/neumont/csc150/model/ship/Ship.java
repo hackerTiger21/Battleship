@@ -3,14 +3,14 @@ package edu.neumont.csc150.model.ship;
 import edu.neumont.csc150.model.Point;
 
 public abstract class Ship {
-    protected static int length;
+    protected int length;
     protected Point[] points;
 
-    public static int getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    protected void setLength(int length) {
         this.length = length;
     }
 
