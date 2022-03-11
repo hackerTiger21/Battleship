@@ -123,4 +123,8 @@ public class PlayerUI {
         } while (true);
         return input;
     }
+
+    public void showPlaceShips(String name) {
+        System.out.println(name + ", place your ships.");
+    }
 }

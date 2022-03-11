@@ -1,12 +1,9 @@
 package edu.neumont.csc150.controller;
 
 import edu.neumont.csc150.model.Board;
-import edu.neumont.csc150.model.Point;
-import edu.neumont.csc150.model.ShipType;
 import edu.neumont.csc150.model.player.BotPlayer;
 import edu.neumont.csc150.model.player.HumanPlayer;
 import edu.neumont.csc150.model.player.Player;
-import edu.neumont.csc150.model.ship.*;
 import edu.neumont.csc150.view.GameUI;
 
 import java.io.IOException;
@@ -45,7 +42,10 @@ public class GameController {
 
     private void initializeGame(boolean playerOneHuman, boolean playerTwoHuman) throws IOException {
         createPlayers(playerOneHuman,playerTwoHuman);
-
+        playerOne.placeShips();
+        ui.switchPlayers();
+        playerTwo.placeShips();
+        ui.switchPlayers();
     }
 
     private void setGameMode() throws IOException {
@@ -97,10 +97,4 @@ public class GameController {
         playerOne = playerOneHuman ? new HumanPlayer(ui.askName(true)) : new BotPlayer(ui.askName(true));
         playerTwo = playerTwoHuman ? new HumanPlayer(ui.askName(false)) : new BotPlayer(ui.askName(false));
     }
-
-
-
-
-
-
 }

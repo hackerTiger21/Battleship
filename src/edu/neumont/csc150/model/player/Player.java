@@ -14,7 +14,7 @@ public abstract class Player {
     protected String name;
     protected boolean isHuman;
     protected ArrayList<Ship> ships;
-    protected Board playerBoard;
+    protected Board playerBoard = new Board();
     protected boolean playerLost = false;
     PlayerUI ui = new PlayerUI();
 
@@ -125,6 +125,8 @@ public abstract class Player {
     }
 
     public void placeShips() throws IOException { //* high-pitched demonic screeching *
+        ui.showPlaceShips(getName());
+
         initializeBoards();
         int[][] workingBoardArray = getPlayerBoard().getBoard();
         ShipType[] types = ShipType.values();
