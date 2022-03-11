@@ -52,8 +52,6 @@ public class GameController {
 
     private void placeShips() throws IOException { //* high-pitched demonic screeching *
         initializeBoards();
-        int[][] workingBoardArray;
-
         ShipType[] types = ShipType.values();
         String[] typeStrings = new String[types.length];
         for (int i = 0; i < types.length; i++) {
@@ -62,10 +60,10 @@ public class GameController {
         boolean validPlacement;
 
         for (int h = 0; h < 2; h++) {
-            boolean playerOne = h == 0;
-            workingBoardArray = (h == 0 ? boardOne.getBoard() : boardTwo.getBoard());
+            boolean playerOne = (h == 0);
+            int[][] workingBoardArray = (playerOne ? boardOne.getBoard() : boardTwo.getBoard());
+            displayBoard(playerOne, false);
             for (int i = 0; i < 5; i++) {
-                displayBoard(playerOne, false);
                 Point startingPoint;
                 String workingType = typeStrings[i];
                 switch (workingType) {
@@ -205,6 +203,7 @@ public class GameController {
                         addShipToBoard(playerOne,destroyerPoints);
                         break;
                 }
+                displayBoard(playerOne, false);
             }
             ui.switchPlayers();
         }
