@@ -56,10 +56,10 @@ public class GameController {
 
         ShipType[] types = ShipType.values();
         String[] typeStrings = new String[types.length];
-        boolean validPlacement;
         for (int i = 0; i < types.length; i++) {
             typeStrings[i] = types[i].name();
         }
+        boolean validPlacement;
 
         for (int h = 0; h < 2; h++) {
             boolean playerOne = h == 0;
@@ -79,7 +79,7 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, carrier.getLength(), true);
                                 carrierPoints[0] = startingPoint;
                                 for (int j = 1; j < carrierPoints.length; j++) {
-                                    carrierPoints[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                    carrierPoints[j] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
                                 }
                             } while (!validPlacement);
                         } else {
@@ -89,11 +89,12 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, carrier.getLength(), false);
                                 carrierPoints[0] = startingPoint;
                                 for (int j = 1; j < carrierPoints.length; j++) {
-                                    carrierPoints[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                    carrierPoints[j] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
                             } while (!validPlacement);
                         }
                         carrier.setPoints(carrierPoints);
+                        addShipToBoard(playerOne,carrierPoints);
                         break;
                     case "Battleship":
                         Battleship battleship = new Battleship();
@@ -105,7 +106,7 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, battleship.getLength(), true);
                                 battleshipPoints[0] = startingPoint;
                                 for (int j = 1; j < battleshipPoints.length; j++) {
-                                    battleshipPoints[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                    battleshipPoints[j] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
                                 }
                             } while (!validPlacement);
                         } else {
@@ -115,11 +116,12 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, battleship.getLength(), false);
                                 battleshipPoints[0] = startingPoint;
                                 for (int j = 1; j < battleshipPoints.length; j++) {
-                                    battleshipPoints[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                    battleshipPoints[j] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
                             } while (!validPlacement);
                         }
                         battleship.setPoints(battleshipPoints);
+                        addShipToBoard(playerOne,battleshipPoints);
                         break;
                     case "Cruiser":
                         Cruiser cruiser = new Cruiser();
@@ -131,7 +133,7 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, cruiser.getLength(), true);
                                 cruiserPoints[0] = startingPoint;
                                 for (int j = 1; j < cruiserPoints.length; j++) {
-                                    cruiserPoints[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                    cruiserPoints[j] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
                                 }
                             } while (!validPlacement);
                         } else {
@@ -141,11 +143,12 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, cruiser.getLength(), false);
                                 cruiserPoints[0] = startingPoint;
                                 for (int j = 1; j < cruiserPoints.length; j++) {
-                                    cruiserPoints[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                    cruiserPoints[j] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
                             } while (!validPlacement);
                         }
                         cruiser.setPoints(cruiserPoints);
+                        addShipToBoard(playerOne,cruiserPoints);
                         break;
                     case "Submarine":
                         Submarine submarine = new Submarine();
@@ -157,7 +160,7 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, submarine.getLength(), true);
                                 submarinePoints[0] = startingPoint;
                                 for (int j = 1; j < submarinePoints.length; j++) {
-                                    submarinePoints[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                    submarinePoints[j] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
                                 }
                             } while (!validPlacement);
                         } else {
@@ -167,11 +170,12 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, submarine.getLength(), false);
                                 submarinePoints[0] = startingPoint;
                                 for (int j = 1; j < submarinePoints.length; j++) {
-                                    submarinePoints[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                    submarinePoints[j] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
                             } while (!validPlacement);
                         }
                         submarine.setPoints(submarinePoints);
+                        addShipToBoard(playerOne,submarinePoints);
                         break;
                     case "Destroyer":
                         Destroyer destroyer = new Destroyer();
@@ -183,7 +187,7 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, destroyer.getLength(), true);
                                 destroyerPoints[0] = startingPoint;
                                 for (int j = 1; j < destroyerPoints.length; j++) {
-                                    destroyerPoints[i] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
+                                    destroyerPoints[j] = new Point(startingPoint.getRow() + j, startingPoint.getColumn());
                                 }
                             } while (!validPlacement);
                         } else {
@@ -193,11 +197,12 @@ public class GameController {
                                 validPlacement = placementValid(startingPoint, workingBoardArray, destroyer.getLength(), false);
                                 destroyerPoints[0] = startingPoint;
                                 for (int j = 1; j < destroyerPoints.length; j++) {
-                                    destroyerPoints[i] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
+                                    destroyerPoints[j] = new Point(startingPoint.getRow(), startingPoint.getColumn() + j);
                                 }
                             } while (!validPlacement);
                         }
                         destroyer.setPoints(destroyerPoints);
+                        addShipToBoard(playerOne,destroyerPoints);
                         break;
                 }
             }
@@ -298,5 +303,16 @@ public class GameController {
             }
         }
         return noCollision;
+    }
+
+    private void addShipToBoard(boolean playerOne, Point[] points){
+        int[][] workingArray = playerOne ? boardOne.getBoard():boardTwo.getBoard();
+        for (int i = 0; i < points.length; i++) {
+            int row = points[i].getRow();
+            int column = points[i].getColumn();
+            workingArray[row][column] = 3;
+        }
+        if (playerOne) boardOne.setBoard(workingArray);
+        else boardTwo.setBoard(workingArray);
     }
 }
