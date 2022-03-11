@@ -61,9 +61,10 @@ public class GameUI {
         do {
             try {
                 if (coordsString.length() == 2) rowNum = Integer.parseInt((String.valueOf(coordsString.charAt(0))));
-                else if (coordsString.length() == 3) rowNum = Integer.parseInt(coordsString.substring(0, coordsString.length()));
+                else if (coordsString.length() == 3) rowNum = Integer.parseInt(coordsString.substring(0, coordsString.length() - 1));
                 else throw new NumberFormatException();
                 if (rowNum > 10 || rowNum < 1) throw new NumberFormatException();
+                --rowNum; //1-10 to 0-9
 
                 columnChar = coordsString.charAt(coordsString.length() - 1); //always single character, last index
                 if (columnChar >= 'a' && columnChar <= 'j') columnNum = columnChar - 'a';
