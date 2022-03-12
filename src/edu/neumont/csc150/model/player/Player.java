@@ -1,9 +1,6 @@
 package edu.neumont.csc150.model.player;
 
-import edu.neumont.csc150.model.Board;
-import edu.neumont.csc150.model.PlayerLostException;
-import edu.neumont.csc150.model.Point;
-import edu.neumont.csc150.model.ShipType;
+import edu.neumont.csc150.model.*;
 import edu.neumont.csc150.model.ship.*;
 import edu.neumont.csc150.view.PlayerUI;
 
@@ -292,5 +289,24 @@ public abstract class Player {
         ui.displayBoard(getPlayerBoard().getBoard(), isOpponent);
     }
 
-    public abstract void takeTurn() throws PlayerLostException;
+    public ShotType receiveShot(Point target){
+        ShotType result = getPlayerBoard().takeShot(target);
+        if (result.equals(ShotType.Hit)){
+            for (Ship ship: getShips()) {
+                for (int i = 0; i < ship.getPoints().length; i++) {
+                    Point[] points = ship.getPoints();
+                    if (points[i].equals(target)){
+                        points[i].setHit(true);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    public abstract Point takeTurn(int[][] enemyBoard) throws PlayerSurrenderedException, IOException;
+
+    public void displayShotResult(ShotType shotType){
+        ui.displayResult(shotType);
+    }
 }

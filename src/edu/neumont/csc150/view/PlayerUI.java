@@ -1,6 +1,7 @@
 package edu.neumont.csc150.view;
 
 import edu.neumont.csc150.model.Point;
+import edu.neumont.csc150.model.ShotType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,10 +18,12 @@ public class PlayerUI {
     /**
      * Do you fight or surrender?
      */
-    public void attackMenu() {
+    public boolean doesPlayerAttack() throws IOException {
         System.out.println("It's your turn, what do you do?:\r\n" +
                 "\t1. Shoot your shot\r\n" +
                 "\t2. Wave your white flag");
+        if(getUserInputAsInt(1,2) == 1) return true;
+        else return false;
     }
 
     /**
@@ -126,5 +129,23 @@ public class PlayerUI {
 
     public void showPlaceShips(String name) {
         System.out.println(name + ", place your ships.");
+    }
+
+    public Point askTarget() throws IOException {
+        System.out.print("Where do you want to shoot? ");
+        return parseCoords();
+    }
+
+    public void displayResult(ShotType type) {
+        switch (type){
+            case Miss:
+                System.out.println("You missed");
+                break;
+            case Hit:
+                System.out.println("Your shot hit a ship!");
+                break;
+            case Invalid:
+                System.out.println("You already shot there. Try again.");
+        }
     }
 }

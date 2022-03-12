@@ -1,6 +1,7 @@
 package edu.neumont.csc150.model.player;
 
-import edu.neumont.csc150.model.PlayerLostException;
+import edu.neumont.csc150.model.PlayerSurrenderedException;
+import edu.neumont.csc150.model.Point;
 
 public class BotPlayer extends Player{
     public BotPlayer(String name){
@@ -9,7 +10,8 @@ public class BotPlayer extends Player{
     }
 
     @Override
-    public void takeTurn() throws PlayerLostException {
+    public Point takeTurn(int[][] enemyBoard) throws PlayerSurrenderedException {
         //empty for now, this is where bot AI goes
+        return null;
     }
 }

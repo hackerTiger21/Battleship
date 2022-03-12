@@ -69,8 +69,7 @@ public class GameUI {
     }
 
     public void displayUnderConstruction() {
-        System.out.println("The bot is currently under construction.\r\n" +
-                "(AKA: the Aliens hacked us & told us to get gud, so we're trying to get it back up and running.)");
+        System.out.println("This part is under construction.");
     }
 
     public void clearConsole() {
@@ -80,9 +79,15 @@ public class GameUI {
     }
 
     public void switchPlayers() throws IOException {
+        System.out.println("Press enter to clear the screen");
+        br.readLine();
         clearConsole();
         System.out.println("Pass the device to the other player, press Enter when ready.");
         br.readLine();
         clearConsole();
+    }
+
+    public void displayWin(String name) {
+        System.out.println(name + "wins!");
     }
 }

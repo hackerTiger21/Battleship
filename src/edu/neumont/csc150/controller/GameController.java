@@ -1,6 +1,9 @@
 package edu.neumont.csc150.controller;
 
 import edu.neumont.csc150.model.Board;
+import edu.neumont.csc150.model.PlayerSurrenderedException;
+import edu.neumont.csc150.model.Point;
+import edu.neumont.csc150.model.ShotType;
 import edu.neumont.csc150.model.player.BotPlayer;
 import edu.neumont.csc150.model.player.HumanPlayer;
 import edu.neumont.csc150.model.player.Player;
@@ -42,10 +45,12 @@ public class GameController {
 
     private void initializeGame(boolean playerOneHuman, boolean playerTwoHuman) throws IOException {
         createPlayers(playerOneHuman,playerTwoHuman);
+        setGameMode();
         playerOne.placeShips();
         ui.switchPlayers();
         playerTwo.placeShips();
         ui.switchPlayers();
+        startGame();
     }
 
     private void setGameMode() throws IOException {
@@ -53,7 +58,7 @@ public class GameController {
         gameMode = ui.getUserInputAsInt(1, 3);
     }
 
-    private void startGame() {
+    private void startGame() throws IOException {
         switch (gameMode) {
             case 1: //one shot
                 oneShotGame();
@@ -67,30 +72,90 @@ public class GameController {
         }
     }
 
-    private void oneShotGame() {
+    private void oneShotGame() throws IOException{
         boolean playerOneTurn = true;
+        boolean switchTurn;
         boolean gameOver = false;
         do {
+            switchTurn = true;
             if (playerOneTurn) {
-
+                try {
+                    Point target = playerOne.takeTurn(playerTwo.getPlayerBoard().getBoard());
+                    ShotType shotType = playerTwo.receiveShot(target);
+                    playerOne.displayShotResult(shotType);
+                    if (shotType.equals(ShotType.Invalid)) switchTurn = false;
+                    playerTwo.checkForLoss();
+                    if (playerTwo.hasPlayerLost()) throw new PlayerSurrenderedException("Player One wins");
+                } catch (PlayerSurrenderedException ex){
+                    ui.displayWin(playerOne.getName());
+                    gameOver = true;
+                }
+            } else {
+                try {
+                    Point target = playerTwo.takeTurn(playerOne.getPlayerBoard().getBoard());
+                    ShotType shotType = playerOne.receiveShot(target);
+                    playerTwo.displayShotResult(shotType);
+                    if (shotType.equals(ShotType.Invalid)) switchTurn = false;
+                    playerOne.checkForLoss();
+                    if (playerOne.hasPlayerLost()) throw new PlayerSurrenderedException("Player Two Wins");
+                } catch (PlayerSurrenderedException ex){
+                    ui.displayWin(playerTwo.getName());
+                    gameOver = true;
+                }
+            }
+            if (switchTurn) {
+                playerOneTurn = !playerOneTurn;
+                ui.switchPlayers();
             }
         } while (!gameOver);
     }
 
-    private void artilleryGame() {
+    private void artilleryGame() throws IOException {
         boolean playerOneTurn = true;
+        boolean switchTurn;
         boolean gameOver = false;
         do {
+            switchTurn = true;
+            if (playerOneTurn) {
+                try {
+                    Point target = playerOne.takeTurn(playerTwo.getPlayerBoard().getBoard());
+                    ShotType shotType = playerTwo.receiveShot(target);
+                    playerOne.displayShotResult(shotType);
+                    if (shotType.equals(ShotType.Invalid) || shotType.equals(ShotType.Hit)) switchTurn = false;
+                    playerTwo.checkForLoss();
+                    if (playerTwo.hasPlayerLost()) throw new PlayerSurrenderedException("Player One wins");
+                } catch (PlayerSurrenderedException ex){
+                    ui.displayWin(playerOne.getName());
+                    gameOver = true;
+                }
+            } else {
+                try {
+                    Point target = playerTwo.takeTurn(playerOne.getPlayerBoard().getBoard());
+                    ShotType shotType = playerOne.receiveShot(target);
+                    playerTwo.displayShotResult(shotType);
+                    if (shotType.equals(ShotType.Invalid) || shotType.equals(ShotType.Hit)) switchTurn = false;
+                    playerOne.checkForLoss();
+                    if (playerOne.hasPlayerLost()) throw new PlayerSurrenderedException("Player Two Wins");
+                } catch (PlayerSurrenderedException ex){
+                    ui.displayWin(playerTwo.getName());
+                    gameOver = true;
+                }
+            }
+            if (switchTurn) {
+                playerOneTurn = !playerOneTurn;
+                ui.switchPlayers();
+            }
 
         } while (!gameOver);
     }
 
     private void salvoGame() {
-        boolean playerOneTurn = true;
-        boolean gameOver = false;
-        do {
-
-        } while (!gameOver);
+        ui.displayUnderConstruction();
+//        boolean playerOneTurn = true;
+//        boolean gameOver = false;
+//        do {
+//
+//        } while (!gameOver);
     }
 
     private void createPlayers(boolean playerOneHuman, boolean playerTwoHuman) throws IOException {
